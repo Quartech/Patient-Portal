@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "MedicationModal",
+  name: "LabResultModal",
   data: () => {
     return {};
   },
