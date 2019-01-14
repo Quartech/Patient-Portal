@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <b-jumbotron>
-      <template slot="header">
-        Bootstrap Vue
-      </template>
+      <template slot="header">Quartech Patient Portal</template>
       <template slot="lead">
         This is a simple hero unit, a simple jumbotron-style component for
         calling extra attention to featured content or information.
@@ -22,22 +20,11 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: 'Home',
-  components: {
-  },
+  name: "Home",
+  components: {},
   data: () => {
-    return({});
+    return {};
   },
-  methods: {
-    GetAllMedicationRecords: () => {
-      console.log("Button Pressed");
-      return ["Med Record 1", "Med Record 2"]
-    },
-
-    GetAllMedicationRecordsForPatient: (PatientId) => {
-      console.log(PatientId);
-    },
-  },
+  methods: {}
 };
-
 </script>

@@ -11,14 +11,14 @@
           <th>Expiry Date</th>
           <th># of Renewals Left</th>
           <th>
-            <button class="btn btn-primary" v-on:click="GetAllMedications()">
+            <button class="btn btn-primary" v-on:click="getAllMedications()">
               <font-awesome-icon icon="sync-alt"/>
             </button>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="medication in Medications" :key="medication.resource.id">
+        <tr v-for="medication in medications" :key="medication.resource.id">
           <!-- <td>{{ medication.resource.id }}</td> -->
           <td>{{ medication.resource.medicationCodeableConcept ? medication.resource.medicationCodeableConcept.coding[0].display.toUpperCase() : 'No Name Provided'}}</td>
           <td>{{ medication.resource.dosage ? medication.resource.dosage[0].text : 'N/A'}}</td>
@@ -26,7 +26,7 @@
           <td>2019-02-02</td>
           <td>3</td>
           <td>
-            <b-btn @click="OpenModal(medication)" class="btn btn-light btn-sm">DETAILS</b-btn>
+            <b-btn @click="openModal(medication)" class="btn btn-light btn-sm">DETAILS</b-btn>
           </td>
         </tr>
       </tbody>
@@ -35,9 +35,6 @@
       <h1>Looks like you don't have any medications perscribed. Would you like to request one?</h1>
     </div>
     <div>
-      <!-- <b-modal id="MedicationModal" title="Medication Modal">
-        <p class="my-4">This is a modal</p>
-      </b-modal> -->
       <medicaiton-modal></medicaiton-modal>
     </div>
   </div>
@@ -51,22 +48,22 @@ export default {
   data: () => {
     return {
       hasMedications: true,
-      Medications: []
+      medications: []
     };
   },
   components: {
-    'medicaiton-modal': MedicationModal
+    "medicaiton-modal": MedicationModal
   },
   methods: {
-    GetAllMedications() {
+    getAllMedications() {
       this.$http
         .get(
           "http://hapi.fhir.org/baseDstu3/MedicationStatement?_count=10&_format=json"
         )
         .then(
           response => {
-            this.Medications = response.body.entry;
-            if (this.Medications.length > 0) {
+            this.medications = response.body.entry;
+            if (this.medications.length > 0) {
               this.hasMedications = true;
             }
           },
@@ -75,19 +72,19 @@ export default {
           }
         );
     },
-    OpenModal(MedicationRow) {
-
+    openModal(medicationRow) {
+      console.log(medicationRow)
     }
   },
-  
+
   beforeMount() {
-    this.GetAllMedications();
+    this.getAllMedications();
   }
 };
 </script>
 
 <style scoped>
-  .container {
-    text-align: center;
-  }
+.container {
+  text-align: center;
+}
 </style>

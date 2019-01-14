@@ -8,22 +8,24 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Profile',
+  name: "Profile",
   data: () => {
     return {
-      CurrentPatient: {}
-    }
+      currentPatient: {}
+    };
   },
   methods: {
-    GetCurrentUserInfo() {
-      this.$http.get('http://hapi.fhir.org/baseDstu3/Patient/422566?_format=json').then(repsonse => {
-        // console.log(repsonse.body);
-        this.CurrentPatient = response.body;
-      });
+    getCurrentUserInfo() {
+      this.$http
+        .get("http://hapi.fhir.org/baseDstu3/Patient/422566?_format=json")
+        .then(repsonse => {
+          // console.log(repsonse.body);
+          this.currentPatient = response.body;
+        });
     }
   },
   beforeMount() {
-    this.GetCurrentUserInfo()
+    this.getCurrentUserInfo();
   }
 };
 </script>
