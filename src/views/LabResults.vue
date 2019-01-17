@@ -91,6 +91,6 @@ export default {
 
 <style scoped>
 .container {
-  text-align: center;
+  text-align: left;
 }
 </style>

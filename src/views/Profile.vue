@@ -1,6 +1,17 @@
 <template>
-  <div class="profile">
+  <div class="container">
     <h1>Profile</h1>
+    <br>
+    <b-row>
+      <b-col>
+        <img src="./../assets/profile.jpg" width="200" height="200"/>
+      </b-col>
+      <b-col cols="9">
+        <h2>John Doe</h2>
+        <h4>Address: 123 Imaginary St.</h4>
+        <h4>Born: 1992-02-19</h4>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -11,7 +22,10 @@ export default {
   name: "Profile",
   data: () => {
     return {
-      currentPatient: {}
+      currentPatient: {},
+      images: {
+        profile: require('./../assets/profile.jpg')
+      }
     };
   },
   methods: {
@@ -19,7 +33,6 @@ export default {
       this.$http
         .get("http://hapi.fhir.org/baseDstu3/Patient/422566?_format=json")
         .then(repsonse => {
-          // console.log(repsonse.body);
           this.currentPatient = response.body;
         });
     }
@@ -29,3 +42,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.container {
+  text-align: left;
+}
+</style>

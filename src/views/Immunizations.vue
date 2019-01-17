@@ -25,7 +25,7 @@
           <td>{{ immunization.resource.vaccineCode.text }}</td>
           <td>{{ immunization.resource.date.split('T')[0] }}</td>
           <td>
-            <button class="btn btn-light btn-sm">DETAILS</button>
+            <button class="btn btn-light btn-sm" @click="openImmunizationModal(immunization.resource)">DETAILS</button>
           </td>
         </tr>
       </tbody>
@@ -78,6 +78,9 @@ export default {
         }
         return 0;
       });
+    },
+    openImmunizationModal(immunizationRow) {
+      console.log(immunizationRow);
     }
   },
   beforeMount() {
@@ -88,6 +91,6 @@ export default {
 
 <style scoped>
 .container {
-  text-align: center;
+  text-align: left;
 }
 </style>

@@ -3,17 +3,37 @@
     <b-jumbotron>
       <template slot="header">Quartech Patient Portal</template>
       <template slot="lead">
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+        This application lets you view your current medications, immunizations and lab results. 
       </template>
-      <hr class="my-4">
-      <p>
-        It uses utility classes for typography and spacing to space content
-        out within the larger container.
-      </p>
-      <b-btn variant="primary" href="#">Do Something</b-btn>
-      <b-btn variant="success" href="#">Do Something Else</b-btn>
     </b-jumbotron>
+    <div class="page-body">
+      <b-row>
+        <b-col>
+          <b-card title="Medications">
+            <p class="card-text">
+              View your current medication perscriptions.
+            </p>
+            <button class="btn btn-primary" @click="redirect('medications')">MEDICATIONS</button>
+          </b-card>
+        </b-col>
+        <b-col>
+          <b-card title="Immunizations">
+            <p class="card-text">
+              View all your past Immunizations.
+            </p>
+            <button class="btn btn-primary" @click="redirect('immunizations')">IMMUNIZATIONS</button>
+          </b-card>
+        </b-col>
+        <b-col>
+          <b-card title="Lab Results">
+            <p class="card-text">
+              View your lab results and observations.
+            </p>
+            <button class="btn btn-primary" @click="redirect('lab-results')">LAB RESULTS</button>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
   </div>
 </template>
 
@@ -25,6 +45,10 @@ export default {
   data: () => {
     return {};
   },
-  methods: {}
+  methods: {
+    redirect(path) {
+      this.$router.push('/' + path);
+    }
+  }
 };
 </script>
