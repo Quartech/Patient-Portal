@@ -58,7 +58,7 @@ export default {
     getAllMedications() {
       this.$http
         .get(
-          "http://hapi.fhir.org/baseDstu3/MedicationStatement?_count=10&_format=json"
+          "https://localhost:44395/api/medicationrequest"
         )
         .then(
           response => {
