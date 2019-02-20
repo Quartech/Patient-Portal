@@ -13,19 +13,22 @@
             Date of Inspection
           </th>
           <th>
-            <button class="btn btn-primary" @click="getAllLabResultsForPatient(1036047)">
+            <button class="btn btn-primary" @click="getAllLabResults()">
               <font-awesome-icon icon="sync-alt"/>
             </button>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="labResult in labResults" :key="labResult.resource.id">
-          <td>{{ labResult.resource.code.coding[0].display }}</td>
-          <td>{{ labResult.resource.result.length }}</td>
-          <td>{{ labResult.resource.effectiveDateTime.split('T')[0] }}</td>
+        <tr v-for="labResult in labResults" :key="labResult.id">
+          <td>{{ labResult.code.text}}</td>
+          <td>{{ !labResult.result ? 0 : labResult.result.length }}</td>
+          <td>{{ labResult.effectiveDateTime.split('T')[0] }}</td>
           <td>
-            <button class="btn btn-light btn-sm" @click="openLabResultModal(labResult.resource)">DETAILS</button>
+            <button
+              class="btn btn-light btn-sm"
+              @click="openLabResultModal(labResult.resource)"
+            >DETAILS</button>
           </td>
         </tr>
       </tbody>
@@ -46,14 +49,12 @@ export default {
   },
   components: {},
   methods: {
-    getAllLabResultsForPatient(patientId) {
+    getAllLabResults() {
       this.$http
-        .get(
-          "http://hapi.fhir.org/baseDstu3/DiagnosticReport?patient=" + patientId
-        )
+        .get("https://localhost:44352/api/diagnosticreport")
         .then(response => {
-          console.log(response)
-          this.labResults = response.body.entry;
+          console.log(response);
+          this.labResults = response.body.labresults;
           this.sortLabResults();
         });
     },
@@ -69,10 +70,10 @@ export default {
         this.sort = "new-to-old";
       }
       this.labResults = this.labResults.sort((a, b) => {
-        if (a.resource.effectiveDateTime < b.resource.effectiveDateTime) {
+        if (a.effectiveDateTime < b.effectiveDateTime) {
           return val1;
         }
-        if (a.resource.effectiveDateTime > b.resource.effectiveDateTime) {
+        if (a.effectiveDateTime > b.effectiveDateTime) {
           return val2;
         }
         return 0;
@@ -84,7 +85,7 @@ export default {
   },
 
   beforeMount() {
-    this.getAllLabResultsForPatient(1036047);
+    this.getAllLabResults();
   }
 };
 </script>

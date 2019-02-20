@@ -20,10 +20,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="immunization in immunizations" :key="immunization.resource.id">
-          <td>{{ immunization.resource.id }}</td>
-          <td>{{ immunization.resource.vaccineCode.text }}</td>
-          <td>{{ immunization.resource.date.split('T')[0] }}</td>
+        <tr v-for="immunization in immunizations" :key="immunization.lotNumber">
+          <td>{{ immunization.lotNumber }}</td>
+          <td>{{ immunization.vaccineCode.text }}</td>
+          <td>{{ immunization.occurrenceDateTime }}</td>
           <td>
             <button class="btn btn-light btn-sm" @click="openImmunizationModal(immunization.resource)">DETAILS</button>
           </td>
@@ -47,10 +47,11 @@ export default {
   methods: {
     getAllImmunizations() {
       this.$http
-        .get("http://hapi.fhir.org/baseDstu3/Immunization?patient=1036047")
+        .get("https://localhost:44328/api/immunization")
         .then(
           response => {
-            this.immunizations = response.body.entry;
+            console.log("RESPONSE:", response)
+            this.immunizations = response.body.immunizations;
             this.sortImmunizations();
           },
           response => {
@@ -70,10 +71,10 @@ export default {
         this.sort = "new-to-old";
       }
       this.immunizations = this.immunizations.sort((a, b) => {
-        if (a.resource.date < b.resource.date) {
+        if (a.occurrenceDateTime < b.occurrenceDateTime) {
           return val1;
         }
-        if (a.resource.date > b.resource.date) {
+        if (a.occurrenceDateTime > b.occurrenceDateTime) {
           return val2;
         }
         return 0;

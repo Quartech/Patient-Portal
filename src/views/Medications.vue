@@ -18,13 +18,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="medication in medications" :key="medication.resource.id">
+        <tr v-for="medication in medications" :key="medication.id">
           <!-- <td>{{ medication.resource.id }}</td> -->
-          <td>{{ medication.resource.medicationCodeableConcept ? medication.resource.medicationCodeableConcept.coding[0].display.toUpperCase() : 'No Name Provided'}}</td>
-          <td>{{ medication.resource.dosage ? medication.resource.dosage[0].text : 'N/A'}}</td>
-          <td>2019-01-02</td>
-          <td>2019-02-02</td>
-          <td>3</td>
+          <td>{{ medication.contained[0].code.coding[0].display }}</td>
+          <td>{{ medication.dosageInstruction[0].text }}</td>
+          <td>{{ medication.authoredOn }}</td>
+          <td>{{ medication.dispenseRequest.validityPeriod.end }}</td>
+          <td>{{ medication.dispenseRequest.numberOfRepeatsAllowed }}</td>
           <td>
             <b-btn @click="openModal(medication)" class="btn btn-light btn-sm">DETAILS</b-btn>
           </td>
@@ -62,13 +62,11 @@ export default {
         )
         .then(
           response => {
-            this.medications = response.body.entry;
+            console.log(response)
+            this.medications = response.body.medicationrequests;
             if (this.medications.length > 0) {
               this.hasMedications = true;
             }
-          },
-          response => {
-            console.error(response);
           }
         );
     },
