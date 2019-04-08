@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+   frontend:
+     image: patientportal:latest
+     ports:
+      - 8080:8080
+   medications:
+     image: medicationsservice:latest
+     ports:
+       - 5000:3000
+     tty: true
+   immunizations:
+     image: immunizationsservice:latest
+     ports:
+       - 5005:3000
+     tty: true
+   labresults:
+     image: labresultsservice:latest
+     ports:
+       - 5010:3000
+     tty: true
