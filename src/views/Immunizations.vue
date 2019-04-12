@@ -1,6 +1,12 @@
 <template>
   <div class="container">
     <h1>Immunizations</h1>
+    <div>
+      <b-dropdown id="User-dropdown" text="Patient" class="m-md-2" variant="outline-primary">
+        <b-dropdown-item @click="this.getAllImmunizations">Alice Jacobs</b-dropdown-item>
+        <b-dropdown-item @click="this.getAllImmunizationsForChild">Alex Jacobs</b-dropdown-item>
+      </b-dropdown>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -10,12 +16,10 @@
             <button class="btn btn-light" @click="sortImmunizations()">
               <font-awesome-icon icon="arrows-alt-v"/>
             </button>
-            Date Administered (YYYY-MM-DD)
+            Most Recent Administration (YYYY-MM-DD)
           </th>
           <th>
-            <button class="btn btn-primary" @click="getAllImmunizations()">
-              <font-awesome-icon icon="sync-alt"/>
-            </button>
+            <a href="../" download="Immunizations.pdf">Download your information</a>
           </th>
         </tr>
       </thead>
@@ -35,7 +39,6 @@
 
 <script>
 // @ is an alias to /src
-
 export default {
   name: "Immunizations",
   data: () => {
@@ -47,7 +50,21 @@ export default {
   methods: {
     getAllImmunizations() {
       this.$http
-        .get("http://localhost:5005/api/immunization")
+        .get("http://localhost:3000/api/immunization") // TODO: modify this
+        .then(
+          response => {
+            console.log("RESPONSE:", response)
+            this.immunizations = response.body.immunizations;
+            this.sortImmunizations();
+          },
+          response => {
+            console.error(response);
+          }
+        );
+    },
+    getAllImmunizationsForChild() {
+      this.$http
+        .get("http://localhost:3000/api/immunization/child") // TODO: modify this
         .then(
           response => {
             console.log("RESPONSE:", response)

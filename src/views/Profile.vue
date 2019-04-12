@@ -7,9 +7,9 @@
         <img src="./../assets/profile.jpg" width="200" height="200"/>
       </b-col>
       <b-col cols="9">
-        <h2>Alice</h2>
+        <h2>Alice Jacobs</h2>
         <h4>Address: 123 Imaginary St.</h4>
-        <h4>Born: 1982-02-19</h4>
+        <h4>Born: 1981-02-19</h4>
       </b-col>
     </b-row>
   </div>
