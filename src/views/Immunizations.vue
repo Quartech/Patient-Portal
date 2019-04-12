@@ -47,7 +47,7 @@ export default {
   methods: {
     getAllImmunizations() {
       this.$http
-        .get("https://localhost:44328/api/immunization")
+        .get("http://localhost:5005/api/immunization")
         .then(
           response => {
             console.log("RESPONSE:", response)

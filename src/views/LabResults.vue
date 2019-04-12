@@ -51,7 +51,7 @@ export default {
   methods: {
     getAllLabResults() {
       this.$http
-        .get("https://localhost:44352/api/diagnosticreport")
+        .get("http://localhost:5010/api/diagnosticreport")
         .then(response => {
           console.log(response);
           this.labResults = response.body.labresults;

@@ -20,7 +20,7 @@
       <tbody>
         <tr v-for="medication in medications" :key="medication.id">
           <!-- <td>{{ medication.resource.id }}</td> -->
-          <td>{{ medication.contained[0].code.coding[0].display }}</td>
+          <td>{{ medication.medicationCodeableConcept ? medication.medicationCodeableConcept.coding[0].display : medication.contained[0].code.coding[0].display }}</td>
           <td>{{ medication.dosageInstruction[0].text }}</td>
           <td>{{ medication.authoredOn }}</td>
           <td>{{ medication.dispenseRequest.validityPeriod.end }}</td>
@@ -58,7 +58,7 @@ export default {
     getAllMedications() {
       this.$http
         .get(
-          "https://localhost:44395/api/medicationrequest"
+          "http://localhost:5000/api/medicationrequest"
         )
         .then(
           response => {
