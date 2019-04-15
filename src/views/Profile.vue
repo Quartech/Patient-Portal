@@ -8,7 +8,7 @@
       </b-col>
       <b-col cols="9">
         <h2>Alice Jacobs</h2>
-        <h4>Address: 123 Imaginary St.</h4>
+        <h4>Address: 1234 Vancouver Street</h4>
         <h4>Born: 1981-02-19</h4>
       </b-col>
     </b-row>

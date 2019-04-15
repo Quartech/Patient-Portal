@@ -19,7 +19,9 @@
             Most Recent Administration (YYYY-MM-DD)
           </th>
           <th>
-            <a href="../" download="Immunizations.pdf">Download your information</a>
+            <a href="https://drive.google.com/open?id=14bmr-ABh0uJQNRqQvIynnVGAI1EodCJU" download="Immunizations.pdf">
+              <button class="btn btn-primary">Download Certificate</button>
+            </a>
           </th>
         </tr>
       </thead>
