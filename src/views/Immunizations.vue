@@ -52,7 +52,7 @@ export default {
   methods: {
     getAllImmunizations() {
       this.$http
-        .get("http://localhost:3000/api/immunization") // TODO: modify this
+        .get("http://localhost:5005/api/immunization") // TODO: modify this
         .then(
           response => {
             console.log("RESPONSE:", response)
@@ -66,7 +66,7 @@ export default {
     },
     getAllImmunizationsForChild() {
       this.$http
-        .get("http://localhost:3000/api/immunization/child") // TODO: modify this
+        .get("http://localhost:5005/api/immunization/child") // TODO: modify this
         .then(
           response => {
             console.log("RESPONSE:", response)
