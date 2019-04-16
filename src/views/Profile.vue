@@ -18,7 +18,6 @@
     <p>Enjoy all the benefits and value that third-party health apps provide by
       connecting them to your health data</p>
     <h4>You have 2 connected apps</h4>
-    <p>&nbsp;</p>
     <b-row>
       <b-col cols="5">
         <p>&nbsp;</p>
