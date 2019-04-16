@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br>
     <h1><font-awesome-icon icon="prescription-bottle-alt"></font-awesome-icon> Medications</h1>
     <table class="table" v-if="hasMedications">
       <thead>

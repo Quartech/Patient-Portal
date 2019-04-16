@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br>
     <h1>Profile</h1>
     <br>
     <b-row>

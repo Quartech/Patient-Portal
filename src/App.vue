@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <b-navbar toggleable="md" type="dark" variant="dark">
+      <b-navbar toggleable="md" type="dark" variant="dark" v-if="this.$router.currentRoute.name != 'login'">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
         <b-navbar-brand>
-          <router-link to="/">Health Gateway</router-link>
+          <router-link to="/home">Health Gateway</router-link>
         </b-navbar-brand>
         <b-collapse is-nav id="nav_collapse">
           <!-- Right aligned nav items -->
@@ -24,8 +24,14 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
+      <b-navbar v-else toggleable="md" type="dark" variant="dark">
+        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+        <b-navbar-brand>
+          <router-link to="/login">Health Gateway</router-link>
+        </b-navbar-brand>
+      </b-navbar>
     </div>
-    <br>
+
     <router-view/>
   </div>
 </template>

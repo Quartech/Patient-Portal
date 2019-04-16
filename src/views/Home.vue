@@ -1,9 +1,10 @@
 <template>
   <div class="container">
+    <br>
     <b-jumbotron text-variant="white">
       <template slot="header">Health Gateway</template>
       <template slot="lead">
-        This application lets you view your current medications, immunizations and lab results. 
+        Safely and securely view your current medications, immunizations and lab results. 
       </template>
     </b-jumbotron>
     <div class="page-body">

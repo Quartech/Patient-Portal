@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <br>
+
     <h1><font-awesome-icon icon="flask"></font-awesome-icon> Lab Results</h1>
     <table class="table">
       <thead>
@@ -7,9 +9,6 @@
           <th>Test</th>
           <th>Results</th>
           <th>
-            <button class="btn btn-light" @click="sortLabResults()">
-              <font-awesome-icon icon="arrows-alt-v"/>
-            </button>
             Date of Inspection
           </th>
           <th>
@@ -20,16 +19,46 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="labResult in labResults" :key="labResult.id">
-          <td>{{ labResult.code.text}}</td>
-          <td>{{ !labResult.result ? 0 : labResult.result.length }}</td>
-          <td>{{ labResult.effectiveDateTime.split('T')[0] }}</td>
+        <tr v-for="labResult in labResults" :key="labResult.id" class="accordion-toggle">
+          <td>{{ labResult.resource.code.text }}</td>
+          <td>{{ labResult.resource.component.length }}</td>
+          <td>{{ labResult.resource.effectiveDateTime }}</td>
           <td>
             <button
               class="btn btn-light btn-sm"
-              @click="openLabResultModal(labResult.resource)"
+              @click="toggleDetails()"
             >DETAILS</button>
           </td>
+        </tr>
+        <tr class="details" v-if="this.isDetailsShowing == true">
+          <td>
+            <p>Observation: {{labResults[0].resource.component[0].code.text}}</p>
+            <p>Observation: {{labResults[0].resource.component[1].code.text}}</p>
+            <p>Observation: {{labResults[0].resource.component[2].code.text}}</p>
+            <p>Observation: {{labResults[0].resource.component[3].code.text}}</p>
+            <p>Observation: {{labResults[0].resource.component[4].code.text}}</p>
+            <p>Observation: {{labResults[0].resource.component[5].code.text}}</p>
+            <p>Observation: {{labResults[0].resource.component[6].code.text}}</p>
+          </td>
+          <td>
+            <p>Result: {{labResults[0].resource.component[0].valueQuantity.value}} {{labResults[0].resource.component[0].valueQuantity.unit}}</p>
+            <p>Result: {{labResults[0].resource.component[1].valueQuantity.value}} {{labResults[0].resource.component[1].valueQuantity.unit}}</p>
+            <p>Result: {{labResults[0].resource.component[2].valueQuantity.value}} {{labResults[0].resource.component[2].valueQuantity.unit}}</p>
+            <p>Result: {{labResults[0].resource.component[3].valueQuantity.value}} {{labResults[0].resource.component[3].valueQuantity.unit}}</p>
+            <p>Result: {{labResults[0].resource.component[4].valueQuantity.value}} {{labResults[0].resource.component[4].valueQuantity.unit}}</p>
+            <p>Result: {{labResults[0].resource.component[5].valueQuantity.value}} {{labResults[0].resource.component[5].valueQuantity.unit}}</p>
+            <p>Result: {{labResults[0].resource.component[6].valueQuantity.value}} {{labResults[0].resource.component[6].valueQuantity.unit}}</p>
+          </td>
+          <td>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+            <p>Pass/Fail: <font-awesome-icon class="check-icon" icon="check"></font-awesome-icon></p>
+          </td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -44,7 +73,7 @@ export default {
   data: () => {
     return {
       labResults: [],
-      sort: "new-to-old"
+      isDetailsShowing: false
     };
   },
   components: {},
@@ -54,36 +83,17 @@ export default {
         .get("http://localhost:5010/api/diagnosticreport")
         .then(response => {
           console.log(response);
-          this.labResults = response.body.labresults;
-          this.sortLabResults();
+          this.labResults = response.body.data.entry;
         });
     },
-    sortLabResults() {
-      let val1, val2;
-      if (this.sort === "new-to-old") {
-        val1 = 1;
-        val2 = -1;
-        this.sort = "old-to-new";
+    toggleDetails() {
+      if (!this.isDetailsShowing) {
+        this.isDetailsShowing = true;
       } else {
-        val1 = -1;
-        val2 = 1;
-        this.sort = "new-to-old";
+        this.isDetailsShowing = false;
       }
-      this.labResults = this.labResults.sort((a, b) => {
-        if (a.effectiveDateTime < b.effectiveDateTime) {
-          return val1;
-        }
-        if (a.effectiveDateTime > b.effectiveDateTime) {
-          return val2;
-        }
-        return 0;
-      });
-    },
-    openLabResultModal(labResult) {
-      console.log(labResult);
     }
   },
-
   beforeMount() {
     this.getAllLabResults();
   }
@@ -93,5 +103,11 @@ export default {
 <style scoped>
 .container {
   text-align: left;
+}
+.details {
+  margin-left: 15px;
+}
+.check-icon {
+  color: green
 }
 </style>
