@@ -27,7 +27,7 @@
        <h4>[Disconnect Babylon]</h4>
        </b-col>
     </b-row>
-       <b-row>
+    <b-row>
       <b-col>
         <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/ios/built_in/ios9-health-app-icon.png"/>
       </b-col>
@@ -59,7 +59,7 @@ export default {
     getCurrentUserInfo() {
       this.$http
         .get("http://hapi.fhir.org/baseDstu3/Patient/422566?_format=json")
-        .then(repsonse => {
+        .then(response => {
           this.currentPatient = response.body;
         });
     }
