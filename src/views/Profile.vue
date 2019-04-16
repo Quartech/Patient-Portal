@@ -22,16 +22,16 @@
       <b-col cols="5">
         <p>&nbsp;</p>
         <img src="https://images.ctfassets.net/1izjqx4qtt8c/1NogrRoCWomi6Ksecqm6KS/0a863bb2d152c76713626ec4fc1ee9d9/THB_logo_hor_pur_RGB.png" height="30"/>
-       <h6>Connect with Babylon to share all your health data</h6>
-       <b>[Disconnect Babylon]</b>
+       <h6>Connected with Babylon to share all your health data</h6>
+       <b><a href="#">[Disconnect Babylon]</a></b>
        </b-col>
     </b-row>
     <b-row>
       <b-col cols="5">
         <p>&nbsp;</p>
         <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/ios/built_in/ios9-health-app-icon.png" height="40"/>
-       <h6>Connect with Apple Health to share all your health data to view progress</h6>
-       <b>[Disconnect Apple Health]</b>
+       <h6>Connected with Apple Health to share all your health data to view progress</h6>
+       <b><a href="#">[Disconnect Apple Health]</a></b>
        </b-col>
     </b-row>
     <p>&nbsp;</p>
