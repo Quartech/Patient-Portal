@@ -12,11 +12,18 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 /* FontAwesome Icons */
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { faArrowsAltV } from '@fortawesome/free-solid-svg-icons';
+import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faSyringe } from '@fortawesome/free-solid-svg-icons';
+import { faPrescriptionBottleAlt } from '@fortawesome/free-solid-svg-icons';
+
 Vue.config.productionTip = false;
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 library.add(faSyncAlt);
 library.add(faArrowsAltV);
+library.add(faPrescriptionBottleAlt);
+library.add(faSyringe);
+library.add(faFlask);
 
 Vue.use(BootstrapVue);
 Vue.use(VueResource);

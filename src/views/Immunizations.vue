@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Immunizations</h1>
+    <h1><font-awesome-icon icon="syringe"></font-awesome-icon> Immunizations</h1>
     <div>
       <b-form-group>
         <div @click="this.getAllImmunizations" >
