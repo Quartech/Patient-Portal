@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Lab Results</h1>
+    <h1><font-awesome-icon icon="flask"></font-awesome-icon> Lab Results</h1>
     <table class="table">
       <thead>
         <tr>
