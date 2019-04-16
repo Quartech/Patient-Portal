@@ -9,7 +9,7 @@
       <b-col cols="9">
         <h2>Alice Jacobs</h2>
         <h4>1234 Vancouver Street</h4>
-        <h4>PHN: 9*****6204<h4>
+        <h4>PHN: 9*****6204</h4> 
         <h4>DOB: 1981 FEB 19</h4>
       </b-col>
     </b-row>
