@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <b-jumbotron>
-      <template slot="header">Quartech Patient Portal</template>
+      <template slot="header">Health Gateway</template>
       <template slot="lead">
         This application lets you view your current medications, immunizations and lab results. 
       </template>
