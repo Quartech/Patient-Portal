@@ -2,10 +2,14 @@
   <div class="container">
     <h1>Immunizations</h1>
     <div>
-      <b-dropdown id="User-dropdown" text="Patient" class="m-md-2" variant="outline-primary">
-        <b-dropdown-item @click="this.getAllImmunizations">Alice Jacobs</b-dropdown-item>
-        <b-dropdown-item @click="this.getAllImmunizationsForChild">Alex Jacobs</b-dropdown-item>
-      </b-dropdown>
+      <b-form-group>
+        <div @click="this.getAllImmunizations" >
+          <b-form-radio v-model="patient" name="patient" value="Alice">Alice Jacobs</b-form-radio>
+        </div>
+        <div @click="this.getAllImmunizationsForChild">
+          <b-form-radio v-model="patient" name="patient" value="Alex">Alex Jacobs</b-form-radio>
+        </div>
+      </b-form-group>
     </div>
     <table class="table">
       <thead>
@@ -19,7 +23,7 @@
             Most Recent Administration (YYYY-MM-DD)
           </th>
           <th>
-            <a href="https://drive.google.com/open?id=14bmr-ABh0uJQNRqQvIynnVGAI1EodCJU" download="Immunizations.pdf">
+            <a v-if="this.patient === 'Alex'" href="https://drive.google.com/open?id=14bmr-ABh0uJQNRqQvIynnVGAI1EodCJU">
               <button class="btn btn-primary">Download Certificate</button>
             </a>
           </th>
@@ -46,18 +50,20 @@ export default {
   data: () => {
     return {
       immunizations: [],
-      sort: "new-to-old"
+      sort: "new-to-old",
+      patient: "Alice"
     };
   },
   methods: {
     getAllImmunizations() {
       this.$http
-        .get("http://localhost:5005/api/immunization") // TODO: modify this
+        .get("http://localhost:5005/api/immunization")
         .then(
           response => {
             console.log("RESPONSE:", response)
             this.immunizations = response.body.immunizations;
             this.sortImmunizations();
+            this.patient = "Alice"
           },
           response => {
             console.error(response);
@@ -66,12 +72,13 @@ export default {
     },
     getAllImmunizationsForChild() {
       this.$http
-        .get("http://localhost:5005/api/immunization/child") // TODO: modify this
+        .get("http://localhost:5005/api/immunization/child")
         .then(
           response => {
             console.log("RESPONSE:", response)
             this.immunizations = response.body.immunizations;
             this.sortImmunizations();
+            this.patient = "Alex"
           },
           response => {
             console.error(response);
