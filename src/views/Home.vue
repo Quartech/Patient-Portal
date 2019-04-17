@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <br>
-    <b-jumbotron text-variant="white">
+    <b-jumbotron text-variant="white" fluid="true">
       <template slot="header">Health Gateway</template>
       <template slot="lead">
         Safely and securely view your current medications, immunizations and lab results. 

@@ -5,7 +5,7 @@
     <br>
     <b-row>
       <b-col>
-        <img src="./../assets/profile.jpg" width="200" height="200"/>
+        <img src="./../assets/woman.png" width="200" height="200" border="1"/>
       </b-col>
       <b-col cols="9">
         <h2>Alice Jacobs</h2>

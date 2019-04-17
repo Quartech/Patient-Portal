@@ -7,17 +7,27 @@
             <b-row>
                 <b-col>
                     <b-card class="card-left">
-                        <h4>Sign up with your BC services card.</h4>
-                        <button class="btn btn-primary" @click="redirect('')">Log In</button>
+                        <h4>Sign up using your BC Services Card.</h4>
+                        <b-button size="lg" class="btn-grey"  @click="redirect('')">Sign Up</b-button>
                     </b-card>
                 </b-col>
                 <b-col>
                     <b-card class="card-right">
-                        <h4>Log in to view your records.</h4>
-                        <button class="btn btn-secondary">Sign Up</button>
+                        <h4>Log in using your BC Services Card.</h4>
+                        <b-button size="lg" class="btn-blue" @click="redirect('')">Login</b-button>
                     </b-card>
                 </b-col>
             </b-row>
+            <span align="center">
+            <b-row>
+                <b-col>
+                <br/>
+                <h3>Welcome to Your Health Gateway</h3>
+                <p>Here you can access your health data and services and manage access</p>
+                <b-button size="lg" class="btn-grey">Learn more</b-button></b-col>
+                <br/>
+            <b-row>
+            </span>
         </div>
     </div>
 </template>
@@ -49,17 +59,29 @@ export default {
     margin-top: 30px;
     margin-right: 40%
 }
-.btn{
+.btn-blue {
     display: inline-block;
     margin: 10px;
+    background-color: blue;
+}
+.btn-grey {
+    display: inline-block;
+    margin: 10px;
+    background-color: grey;
 }
 .b-card {
     text-align: center;
 }
 .centered-message {
     position: absolute;
-    top: 45%;
+    top:25%;
     left: 5%;
     color: white;
+    font-size: 10em ;
 }
+ .jumbotron {
+    background-image: url("../assets/cover.jpeg");
+    background-size: cover;
+    background-clip: content-box;
+  }
 </style>
