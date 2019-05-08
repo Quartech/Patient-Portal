@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <br>
-    <h1><font-awesome-icon icon="syringe"></font-awesome-icon> Immunizations</h1>
+    <h1><font-awesome-icon icon="syringe"></font-awesome-icon> Immunizations-test</h1>
     <div>
       <b-form-group>
         <div @click="this.getAllImmunizations" >

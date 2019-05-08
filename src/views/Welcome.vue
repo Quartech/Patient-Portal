@@ -4,7 +4,7 @@
         <h1 class="centered-message">Health Gateway</h1>
         <br>
         <div class="page-content">
-            <b-row>
+            <b-row> 
                 <b-col>
                     <b-card class="card-left">
                         <h4>Sign up using your BC Services Card.</h4>
