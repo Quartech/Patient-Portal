@@ -59,7 +59,7 @@ export default {
     getAllMedications() {
       this.$http
         .get(
-          "http://localhost:5000/api/medicationrequest"
+          "http://ec2-34-219-63-247.us-west-2.compute.amazonaws.com:5000/api/medicationrequest"
         )
         .then(
           response => {

@@ -58,7 +58,7 @@ export default {
   methods: {
     getAllImmunizations() {
       this.$http
-        .get("http://localhost:5005/api/immunization")
+        .get("http://ec2-34-219-63-247.us-west-2.compute.amazonaws.com:5005/api/immunization")
         .then(
           response => {
             console.log("RESPONSE:", response)
@@ -73,7 +73,7 @@ export default {
     },
     getAllImmunizationsForChild() {
       this.$http
-        .get("http://localhost:5005/api/immunization/child")
+        .get("http://ec2-34-219-63-247.us-west-2.compute.amazonaws.com:5005/api/immunization/child")
         .then(
           response => {
             console.log("RESPONSE:", response)

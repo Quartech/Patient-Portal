@@ -80,7 +80,7 @@ export default {
   methods: {
     getAllLabResults() {
       this.$http
-        .get("http://localhost:5010/api/diagnosticreport")
+        .get("http://ec2-34-219-63-247.us-west-2.compute.amazonaws.com:5010/api/diagnosticreport")
         .then(response => {
           console.log(response);
           this.labResults = response.body.data.entry;
