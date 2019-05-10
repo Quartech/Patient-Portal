@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+docker build -t immunizationsservice .
+docker build -t medicationsservice .
+docker build -t labresultsservice .
+docker build -t patientportal .

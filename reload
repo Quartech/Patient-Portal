@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+docker-compose down
+./build-all
+docker-compose up --force-recreate
