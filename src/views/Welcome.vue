@@ -14,7 +14,8 @@
                 <b-col>
                     <b-card class="card-right">
                         <h4>Log in using your BC Services Card.</h4>
-                        <b-button size="lg" class="btn-blue" @click="redirect('')">Login</b-button>
+                        <!-- <b-button size="lg" class="btn-blue" @click="redirect('')">Login</b-button> -->
+                        <b-button size="lg" class="btn-blue" @click="sendLogin()">Login</b-button>
                     </b-card>
                 </b-col>
             </b-row>
@@ -39,13 +40,40 @@ export default {
   components: {},
   data: () => {
     return {
-        imageSource: require("../assets/coverbanner.jpeg")
+        imageSource: require("../assets/coverbanner.jpeg"),
+        domain: '',
+        ajaxRequest:false,
+        postResults:[]
     };
   },
   methods: {
     redirect(path) {
       this.$router.push('/' + path);
-    }
+    },
+    sendLogin: function() {
+        // this.$http
+        // .get("http://localhost:3001/data")
+        // .then(
+        //   response => {
+        //     console.log("RESPONSE:", response)
+        //     this.immunizations = response.body.immunizations;
+        //     this.sortImmunizations();
+        //     this.patient = "Alice"
+        //   },
+        //   response => {
+        //     console.error(response);
+        //   }
+        // );
+
+        this.ajaxRequest = true;
+        this.$http.post('http://localhost:3001/data', {
+              msg: 'test'
+            }, function (data, status, request) {
+                this.postResults = data;
+
+                this.ajaxRequest = false;
+            });
+      }
   }
 };
 </script>
