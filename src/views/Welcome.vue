@@ -8,7 +8,7 @@
                 <b-col>
                     <b-card class="card-left">
                         <h4>Sign up using your BC Services Card.</h4>
-                        <b-button size="lg" class="btn-grey"  @click="redirect('')">Sign--Up</b-button>
+                        <b-button size="lg" class="btn-grey"  @click="redirect('')">Sign Up</b-button>
                     </b-card>
                 </b-col>
                 <b-col>

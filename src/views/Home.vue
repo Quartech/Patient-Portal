@@ -41,6 +41,17 @@
         </b-col>
       </b-row>
     </div>
+    <div id = "requests" >
+      <b-dropdown class="clickable-card rqs" style="width:100%;" variant="primary" >
+        <template slot="button-content">
+          Requests ({{rqs.length}})
+        </template>
+        <b-dropdown-item v-for="rq in rqs" :key="rq.text">
+          {{ rq.text }}
+        </b-dropdown-item>
+
+      </b-dropdown>
+    </div>
   </div>
 </template>
 
@@ -51,16 +62,28 @@ export default {
   components: {},
   data: () => {
     return {
+      rqs:[
+        {text:"hello"},
+        {text:"world"},
+        {text:"test"}
+      ]
     };
   },
   methods: {
     redirect(path) {
       this.$router.push('/' + path);
+    },
+    newReq(req){
+      this.rqs.push({text:req});
     }
   }
 };
 </script>
 <style scoped>
+  #requests{
+    display:block;
+    margin-top: 2vh;
+  }
   .clickable-card:hover {
     cursor: pointer;
   }
