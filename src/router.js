@@ -18,6 +18,11 @@ export default new Router({
       component: Welcome
     },
     {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('./views/Signup.vue'),
+    },
+    {
       path: '/profile',
       name: 'profile',
       // route level code-splitting

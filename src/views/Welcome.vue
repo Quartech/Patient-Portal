@@ -8,7 +8,7 @@
                 <b-col>
                     <b-card class="card-left">
                         <h4>Sign up using your BC Services Card.</h4>
-                        <b-button size="lg" class="btn-grey"  @click="redirect('')">Sign Up</b-button>
+                        <b-button size="lg" class="btn-grey"  @click="redirect('signup')">Sign Up</b-button>
                     </b-card>
                 </b-col>
                 <b-col>
@@ -29,6 +29,7 @@
                 <br/>
             <b-row>
             </span>
+            
         </div>
     </div>
 </template>
@@ -51,28 +52,7 @@ export default {
       this.$router.push('/' + path);
     },
     sendLogin: function() {
-        // this.$http
-        // .get("http://localhost:3001/data")
-        // .then(
-        //   response => {
-        //     console.log("RESPONSE:", response)
-        //     this.immunizations = response.body.immunizations;
-        //     this.sortImmunizations();
-        //     this.patient = "Alice"
-        //   },
-        //   response => {
-        //     console.error(response);
-        //   }
-        // );
-
-        this.ajaxRequest = true;
-        this.$http.post('http://localhost:3001/data', {
-              msg: 'test'
-            }, function (data, status, request) {
-                this.postResults = data;
-
-                this.ajaxRequest = false;
-            });
+        this.$http.post("http://127.0.0.1:3001/data", {msg:'hello API!'});
       }
   }
 };
