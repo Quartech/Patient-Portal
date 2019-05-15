@@ -22,6 +22,19 @@ app.post("/data", (req, res)=>{
   res.end('hello client!');
   console.log(req.body.firstname);
 
+  var newDbName = "i_"+req.body.firstname+"_"+req.body.lastname;
+
+  userinit(newDbName);  
+  
+});
+
+/**
+ * initializes a new user in the postgres database
+ * @param {String} newDbName the name of the new database 
+ */
+function userinit(newDbName){
+  //the database 'postgres' is the default database created by postgresql 
+  //and will server as the entry point for our database connection
   var config = {
     user: 'postgres', 
     database: 'postgres', 
@@ -32,86 +45,47 @@ app.post("/data", (req, res)=>{
     idleTimeoutMillis: 30000
   };
 
-  var pool = connect(config);
-  var newDbName = "i_"+req.body.firstname+"_"+req.body.lastname
-  pool.query("create database "+newDbName).then(()=>{
-    //disconnect from the old database
-    config.database = newDbName;
-    //connect to the new databaase
-    pool = connect(config);
+  //connect to the database
+  var pool = new Pool(config);
 
-    pool.query("create table items(name varchar(50),\
-      lastname varchar(50),\
-      email varchar(80));").then(()=>{
-        pool.query("insert into items(name, lastname, email) values ('"+req.body.firstname+"', '"+req.body.lastname+"', '"+req.body.email+"');")
-      });
+  //create new database
+  pool.query("create database "+newDbName, (err)=>{
+    if(err){
+      console.log(err.stack);
+    }else{
+      //disconnect from the old database
+      config.database = newDbName;
+      //connect to the new databaase
+      pool = new Pool(config);
+    
+      //create table items
+      pool.query("create table items(id bigserial, type bytea,\
+        name bytea,\
+        value bytea,\
+        key bytea);", (err)=>{
+          if(err){
+            console.log(err.stack);
+          }else{
+            //insert into the table
+            pool.query("insert into items (type, name, value, key) values('cafe', 'cafe', 'cafe', 'cafe');", (err)=>{
+              if(err){
+                console.log(err.stack);
+              }
+            });
+          }
+          
+        });
+    }
+
   });
-
   //disconnect from the database
-  disconnect(pool);
-  
-});
-
-
-//connect to the postgres database
-var config = {
-    user: 'postgres', 
-    database: 'test', 
-    password: '', 
-    host: 'localhost', 
-    port: 5432, 
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000
-};
-
-
-/**
- * connects to a specified database
- * @param config the parameter object for the dtaabase
- * example:
- * 
- * var config = {
-    user: 'postgres', 
-    database: 'test', 
-    password: '', 
-    host: 'localhost', 
-    port: 5432, 
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000
-  };
- * @returns pool object, the database conenction object
- */
-function connect(config){
-  const pool = new Pool(config);
-
-
-  pool.on('connect', () => {
-    console.log('connected to the db');
-  });
-  return pool;
-}
-
-
-/**
- * query the database
- * @param q (String) the database query
- * @param pool (connection object) the database conenction
- * object
- */
-function query(q, pool){
-  pool.query(q)
-    .then((res) => {
-      console.log(res.rows);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-/**
- * disconnects the database connection object
- * @param {Pool object} pool 
- */
-function disconnect(pool){
   pool.end();
 }
+
+
+
+
+
+
+
+
