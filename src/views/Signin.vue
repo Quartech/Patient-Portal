@@ -3,21 +3,11 @@
         <p>Hello World! 1</p>
 
         <b-form v-on:submit.prevent="submit()">
-            <b-form-group id="signup" label="Sign Up">
-                <b-form-input 
-                    id="signup-fname"
-                    v-model="first_name"
-                    placeholder="First Name"
-                ></b-form-input>
+            <b-form-group id="signin" label="Sign In">
+                
 
                 <b-form-input 
-                    id="signup-lname"
-                    v-model="last_name"
-                    placeholder="Last Name"
-                ></b-form-input>
-
-                <b-form-input 
-                    id="signup-email"
+                    id="signin-email"
                     v-model="email"
                     placeholder="Email"
                     type="email"
@@ -25,20 +15,14 @@
                 ></b-form-input>
 
                 <b-form-input 
-                    id="signup-password1"
-                    v-model="password1"
+                    id="signin-password"
+                    v-model="password"
                     placeholder="Password"
                     required
                     type="password"
                 ></b-form-input>
 
-                <b-form-input 
-                    id="signup-password2"
-                    v-model="password2"
-                    placeholder="Confirm Password"
-                    required
-                    type="password"
-                ></b-form-input>
+                
 
             </b-form-group>
 
@@ -57,11 +41,8 @@ export default {
     
     data:{
         csrfmiddlewaretoken:'00000000000000000000000000000000',
-        first_name:'wade',
-        last_name:'king',
         email:'wade%40mail.com',
         password1:'05470a5bfe',
-        password2:'05470a5bfe',
     },
     created: function(){
         
@@ -69,8 +50,8 @@ export default {
     methods: {
         submit(){
             var vm = this;
-            var dataStr = 'csrfmiddlewaretoken=00000000000000000000000000000000&first_name='+vm.first_name+'&last_name='+vm.last_name+'&email='+vm.email+'&password1='+vm.password1+'&password2='+vm.password2
-            axios.post('http://localhost:8000/indy/signup/', dataStr)
+            var dataStr = 'csrfmiddlewaretoken=00000000000000000000000000000000&first_name='+'&email='+vm.email+'&password='+vm.password
+            axios.post('http://localhost:8000/indy/', dataStr)
                 .then(function (response) {
                     //currentObj.output = response.data;
                 })

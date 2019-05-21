@@ -15,7 +15,7 @@
                     <b-card class="card-right">
                         <h4>Log in using your BC Services Card.</h4>
                         <!-- <b-button size="lg" class="btn-blue" @click="redirect('')">Login</b-button> -->
-                        <b-button size="lg" class="btn-blue" @click="sendLogin()">Login</b-button>
+                        <b-button size="lg" class="btn-blue" @click="redirect('signin')">Login</b-button>
                     </b-card>
                 </b-col>
             </b-row>
