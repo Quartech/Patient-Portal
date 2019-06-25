@@ -1,4 +1,4 @@
-# healthrecordsapp
+# Patient Portal 
 
 ## Project setup
 ```
