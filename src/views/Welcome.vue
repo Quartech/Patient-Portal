@@ -26,7 +26,7 @@
                 <p>Here you can access your health data and services and manage access</p>
                 <b-button size="lg" class="btn-grey">Learn more</b-button></b-col>
                 <br/>
-            <b-row>
+            </b-row>
             </span>
         </div>
     </div>
