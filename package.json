@@ -17,6 +17,7 @@
     "download": "^7.1.0",
     "gulp-sass": "^3.0.0",
     "jquery": "^3.4.1",
+    "lodash": "^4.17.14",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.21",
